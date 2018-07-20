@@ -1,0 +1,9 @@
+<form action=""method="post">
+  {% csrf_token %}
+  <p>
+    <h1>do you really want to delete?</h1>
+    <p>
+    <a href="{{ post.get_absolute_url }}">NO. not yet</a>
+    <p>
+    <input type="submit" value="YES, please delete"/>
+</form>

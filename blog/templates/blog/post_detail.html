@@ -1,0 +1,49 @@
+            <!--이거랑 post_list는 따로 안해도됨 -->
+{% extends "blog/layout.html" %}
+{% load imagekit %}
+
+{% block title %}
+    {{  post.title  }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>{{ post.title }}</h2>
+
+          {% if post.photo %}<!-- Processedimagefield시 thumbnail지워야됨 -->
+            <img src="{{ post.photo_thumbnail.url }}" style="max-width:100%;"/>
+
+          {% thumbnail "100x100" post.photo %}
+
+          {% thumbnail "100x100" post.photo as thumb %}
+          <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}"/>
+
+          {% thumbnail "100x100" post.photo -- id="myimg" class="mycls" %}
+
+          {% endif %}
+
+                 <!--linebreaksbr = br형식  -->
+        {{ post.content|linebreaks }}
+
+          <hr>
+            <h3>Comments</h3>
+          <ul>
+            {% for comment in post.comment_set.all %}
+            <li>
+            {{ comment.message }}
+              <small>by {{ comment.author }}</small>
+              <small>at {{ comment.updated_at }}</small>
+            </li>
+            {% endfor %}
+            <hr>
+            <a href="{% url "blog:post_list" %}" class="btn btn-primary">글 목록</a>
+            <a href="{% url "blog:post_edit" post.id %}" class="btn btn-default">
+              수정</a>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

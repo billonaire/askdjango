@@ -1,0 +1,64 @@
+{% extends "blog/layout.html" %}
+
+{% block content %}
+    <div class = "container">
+      <div class="jumbotron">
+        <h1>Task's Template <sup>by Sungwoon</sup></h1>
+        <p>시간을 드립니다
+       <p>
+         <a class = "btn btn-lg btn-primary" href="https://blog.naver.com/cjfdlstjddns">
+           대표 블로그
+         </a>
+      </div>
+
+    <div class = "row">
+      <div class= "col-sm-12">
+        <div class="alert alert-info">
+          <ul>
+            <li>OOOOOOOOOO주소로 접속해보세요</li>
+            <li>차후 업데이트 소식을 전해드립니다.</li>
+          </ul>
+        </div>
+
+        <a class = "btn btn-lg btn-primary pull-right"
+         href="{% url "blog:post_new" %}">
+          게시글 작성</a>
+
+        <form action="" method= "get">
+          <input type="text" name="q" value="{{q}}"/>
+          <input type="submit" value="검색" class="btn btn_primary"/>
+        </form>
+
+  <!--나중에 Flex로 해봐야겠음-->
+        <table class ="table table-hover table-bordered">
+          <thead>
+            <th>id</th>
+            <th>title</th>
+            <th>author</th>
+            <th>updated_at</th>
+          </thead>
+
+          <tbody>
+          {% for post in post_list %}
+          <tr>
+            <td>{{post.id}}</td>
+            <!-- <a href="/blog/{{ post.id }}">  url이 변경될때마다 수정해줘야하는 불편함 -->
+            <td><a href="{% url "blog:post_detail" post.id %}">
+                    {{post.title}}
+            </a>
+                {% for tag in post.tag_set.all %}
+                <span class="label label-info">{{ tag.name }}</span>
+                {% endfor %}
+            </td>
+            <td><small>by {{post.title}}</small></td>
+            <td><small>at {{post.updated_at}}</small></td>
+
+          </tr>
+          {% endfor %}
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+
+{% endblock %}

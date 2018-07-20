@@ -1,0 +1,18 @@
+http://localhost:8000/say_hello/?name=Tom&name=Steve&name=john
+
+          <!-- post방식인데 get인자도 전송이되는. 대문자로 안써도되나? -->
+<form action="?lang=ko" method="post">
+    <input type="text" name="title"/>
+    <textarea name="copntent"/>
+    <input type="text" name="title"/>
+
+    <!--multivalueDict = name중복지원-->
+    <input type="file" name="photo"/>
+    <input type="file" name="photo"/>
+    <input type="file" name="photo"/>
+    <input type="file" name="photo"/>
+    <input type="file" name="photo"/>
+</form>
+
+
+<input type="hidden" name="csrfviewmiddlewarewtoken" value="12313123123132123123"/>
