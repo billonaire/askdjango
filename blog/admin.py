@@ -7,6 +7,7 @@ from .models import Post, Comment, Tag
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ['id', 'title','tag_list','status','content', 'content_size','created_at', 'updated_at',]
+    list_display_links = ['title']
     actions = ['make_published']
 
     def get_queryset(self, request):
@@ -24,7 +25,6 @@ class PostAdmin(admin.ModelAdmin):
         updated_count = queryset.update(status='p')
         self.message_user(request, '{} sucessfully marked as published'.format(updated_count))
     make_published.short_description = 'Mark selected stories as published'
-
 
 # admin.site.register(Comment)
 @admin.register(Comment)

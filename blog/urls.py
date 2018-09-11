@@ -12,6 +12,6 @@ urlpatterns = [
     url(r'^(?P<id>\d+)/edit$', views.post_edit, name='post_edit'),
 
     url(r'^cbv/new/$', views_cbv.post_new),
-    url(r'^cbv/(?P<pk>\d+)/edit/$', views_cbv.post_edit, name='post_edit'),
+    url(r'^cbv/(?P<pk>\d+)/edit`/$', views_cbv.post_edit, name='post_edit'),
     url(r'^cbv/(?P<pk>\d+)/delete/$', views_cbv.post_delete, name='post_delete'),
  ]

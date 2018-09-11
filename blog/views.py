@@ -54,8 +54,6 @@ def post_edit(request, id):
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save()
-            # post.user = request.user
-            # post.save()
             messages.success(request, '새 글이 수정되었습니다')
             return redirect(post)
     else:

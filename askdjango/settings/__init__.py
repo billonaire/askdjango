@@ -1,3 +1,5 @@
+from .secrets import *
+
 """
 Django settings for askdjango project.
 

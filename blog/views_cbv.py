@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 class ListView(ListView):   # 이렇게 해도되고 밑에처럼 해도 되고
     model = Post
     queryset = Post.objects.all().prefetch_related('tag_set')
-    paginate_by = 5
+    # paginate_by = 10
 
 post_list = ListView.as_view()
 
@@ -16,7 +16,7 @@ post_list = ListView.as_view()
 
 post_detail = DetailView.as_view(model=Post)
 
-post_edit = UpdateView.as_view(model=Post)
+post_edit = UpdateView.as_view(model=Post, fields= '__all__')
 
 post_new = CreateView.as_view(model=Post, fields = '__all__')
 

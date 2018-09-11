@@ -5,6 +5,7 @@ from django.db import models
 from django.forms import ValidationError
 from imagekit.models import ImageSpecField
 from imagekit.processors import Thumbnail
+from django.utils import timezone
 
 def lnglat_validator(value):
     if not re.match(r'^(\d+\.?\d*),(\d+\.?\d*)$', value):
@@ -45,9 +46,14 @@ class Post(models.Model):                               #국제화기능 써야�
     tag_set = models.ManyToManyField('Tag', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    published_date = models.DateTimeField(blank=True)
 
     class Meta:
         ordering = ['title']
+
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
 
     def __str__(self):
         return self.title
